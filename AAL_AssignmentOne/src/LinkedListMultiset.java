@@ -51,6 +51,48 @@ public class LinkedListMultiset<T> extends Multiset<T>
 	
 	public void removeOne(T item) {
 		// Implement me!
+		
+        Node currNode = mHead;
+
+       // check if value is head node
+        if (currNode.getValue() == item) {
+            // check if length of 1
+            if (mLength == 1) {
+                mHead = mTail= null;
+            }
+            else {
+                mHead = currNode.getNext();
+                mHead.setPrev(null);
+                currNode = null;
+            }
+            
+            mLength--;
+         }
+        // search for value in rest of list
+        else {
+            currNode = currNode.getNext();
+
+            while (currNode != null) {
+                if (currNode.getValue() == item) {
+                    Node prevNode = currNode.getPrev();
+                    prevNode.setNext(currNode.getNext());
+                    // check if tail
+                    if (currNode.getNext() != null) {
+                    	currNode.getNext().setPrev(prevNode);
+                    }
+                    else {
+                    	mTail = prevNode;
+                    }
+                    currNode = null;
+                    mLength--;
+               }
+ 
+                currNode = currNode.getNext();
+            }	
+        }
+
+        // couldn't find a node with value
+       
 	} // end of removeOne()
 	
 	
