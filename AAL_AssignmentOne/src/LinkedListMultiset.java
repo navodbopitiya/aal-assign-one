@@ -41,12 +41,23 @@ public class LinkedListMultiset<T> extends Multiset<T>
 	} // end of add()
 	
 	
+	@Override
 	public int search(T item) {
-		// Implement me!		
+		// Implement me!
+
+		Node currNode = mHead;
+		int instances = 0;
 		
-		// default return, please override when you implement this method
-		return 0;
-	} // end of add()
+        for (int i = 0; i < mLength; ++i) {
+        	if (currNode.getValue() == item) {
+        		instances++;
+        	}
+            currNode = currNode.getNext();
+        }
+        
+        return instances;
+		
+	} // end of search()
 	
 	
 	public void removeOne(T item) {
