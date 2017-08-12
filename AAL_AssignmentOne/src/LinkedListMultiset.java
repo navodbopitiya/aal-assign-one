@@ -5,6 +5,8 @@ public class LinkedListMultiset<T> extends Multiset<T>
 {
 	public LinkedListMultiset() {
 		// Implement me!
+		
+		String testName = "test";
 	} // end of LinkedListMultiset()
 	
 	
