@@ -112,7 +112,7 @@ public class LinkedListMultiset<T> extends Multiset<T> {
 		if (mHead != null) {
 			Node currNode = mHead;
 			while (currNode != null) {
-				out.println(currNode.getString());
+				out.println(currNode.getString() + printDelim + currNode.getCount());
 				currNode = currNode.getNext();
 			}
 		}
