@@ -45,17 +45,16 @@ public class LinkedListMultiset<T> extends Multiset<T> {
 		// Implement me!
 
 		Node currNode = mHead;
+		int instances = 0;
 	
 		for (int i = 0; i < mLength; ++i) {
-			if (currNode.getValue() == item) {
-				return currNode.getCount();
+			if (((String) item).compareTo((String) currNode.getValue()) == 0) {
+				instances = currNode.getCount();
 			}
 			currNode = currNode.getNext();
 		}
-
-		return 0;
-		
-
+		return instances;
+	
 	} // end of search()
 
 	public void removeOne(T item) {
@@ -122,7 +121,7 @@ public class LinkedListMultiset<T> extends Multiset<T> {
 		Node currNode = mHead;
 		Node tempNode = null;
 		while (currNode != null) {
-			if (currNode.getValue() == item) {
+			if (((String) item).compareTo((String) currNode.getValue()) == 0) {
 				tempNode = currNode;
 				currNode = null;
 			} else {
