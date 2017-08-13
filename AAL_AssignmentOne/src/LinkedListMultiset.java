@@ -77,7 +77,7 @@ public class LinkedListMultiset<T> extends Multiset<T> {
 					mLength--;
 				}else if(currNode.equals(mTail)){
 					//Current node is at tail
-					mTail = mTail.mPrev;
+					mTail = mTail.getPrev();
 					mTail.setNext(null);
 					mLength--;
 				}else if(currNode != null){
