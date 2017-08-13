@@ -44,16 +44,17 @@ public class LinkedListMultiset<T> extends Multiset<T> {
 		// Implement me!
 
 		Node currNode = mHead;
-		int instances = 0;
-
+	
 		for (int i = 0; i < mLength; ++i) {
 			if (currNode.getValue() == item) {
-				instances++;
+				
+				return currNode.getCount();
 			}
 			currNode = currNode.getNext();
 		}
 
-		return instances;
+		return 0;
+		
 
 	} // end of search()
 
