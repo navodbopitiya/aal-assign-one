@@ -47,7 +47,6 @@ public class LinkedListMultiset<T> extends Multiset<T> {
 	
 		for (int i = 0; i < mLength; ++i) {
 			if (currNode.getValue() == item) {
-				
 				return currNode.getCount();
 			}
 			currNode = currNode.getNext();
