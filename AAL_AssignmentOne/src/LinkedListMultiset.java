@@ -30,10 +30,11 @@ public class LinkedListMultiset<T> extends Multiset<T> {
 			Node currNode = getNode(item);
 			currNode.increaseCount();
 		} else {
-			// item doesn't exist, add node to the head of list.
-			newNode.setNext(mHead);
-			mHead.setPrev(newNode);
-			mHead = newNode;
+			// item doesn't exist, add node to the tail of list.
+			newNode.mPrev = mTail;
+			newNode.mNext = null;
+			mTail.mNext = newNode;
+			mTail = newNode;
 			mLength++;
 		}
 
