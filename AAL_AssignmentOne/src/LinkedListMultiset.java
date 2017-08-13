@@ -59,45 +59,37 @@ public class LinkedListMultiset<T> extends Multiset<T> {
 
 	public void removeOne(T item) {
 		// Implement me!
-
-		Node currNode = mHead;
-
-		// check if value is head node
-		if (currNode.getValue() == item) {
-			// check if length of 1
-			if (mLength == 1) {
-				mHead = mTail = null;
-			} else {
-				mHead = currNode.getNext();
-				mHead.setPrev(null);
-				currNode = null;
-			}
-
-			mLength--;
-		}
-		// search for value in rest of list
-		else {
-			currNode = currNode.getNext();
-
-			while (currNode != null) {
-				if (currNode.getValue() == item) {
-					Node prevNode = currNode.getPrev();
-					prevNode.setNext(currNode.getNext());
-					// check if tail
-					if (currNode.getNext() != null) {
-						currNode.getNext().setPrev(prevNode);
-					} else {
-						mTail = prevNode;
-					}
-					currNode = null;
+		Node currNode = getNode(item);
+		if(currNode != null){
+			if(currNode.getCount() > 1){
+				//If there is more than one item.
+				currNode.decreaseCount();
+			}else{
+				//If there is only one item left.
+				if(currNode.equals(mHead) && mHead.getNext() != null){
+					//If Current is at head and there are other nodes
+					mHead = mHead.getNext();
+					mLength--;
+					currNode = mHead;
+				}else if(currNode.equals(mHead) && mHead.getNext() == null){
+					//If Current is at head and there are no other nodes
+					mHead = null;
+					mLength--;
+				}else if(currNode.equals(mTail)){
+					//Current node is at tail
+					mTail = mTail.mPrev;
+					mTail.setNext(null);
+					mLength--;
+				}else if(currNode != null){
+					Node prvNode = currNode.getPrev();
+					Node nxtNode = currNode.getNext();
+					currNode.mPrev.setNext(nxtNode);
+					currNode.mNext.setPrev(prvNode);
+					currNode = nxtNode;
 					mLength--;
 				}
-
-				currNode = currNode.getNext();
 			}
 		}
-
-		// couldn't find a node with value
 
 	} // end of removeOne()
 
@@ -177,7 +169,10 @@ public class LinkedListMultiset<T> extends Multiset<T> {
 		public void increaseCount() {
 			mCount++;
 		}
-
+		
+		public void decreaseCount() {
+			mCount--;
+		}
 		public int getCount() {
 			return mCount;
 		}
