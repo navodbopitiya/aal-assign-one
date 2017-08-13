@@ -24,19 +24,24 @@ public class LinkedListMultiset<T> extends Multiset<T>
 		
 		 Node newNode = new Node(item);
 		 
-	     // If head is empty, then the list is empty
+		 	
 	        if (mHead == null) {
+	        	// If head is empty, then the list is empty
 	            mHead = newNode;
 	            mTail = newNode;
-	        }
-	        // otherwise, add node to the head of list.
-	        else {
+	            mLength++;
+	        }else if(search(item) != 0){
+	        	//Item already exists in the list - increase count
+	        	
+	        }else {
+	        	// item doesn't exist, add node to the head of list.
 	            newNode.setNext(mHead);
 	            mHead.setPrev(newNode);
 	            mHead = newNode;
+	            mLength++;
 	        }
 	        
-	        mLength++;
+	        
 	} // end of add()
 	
 	
