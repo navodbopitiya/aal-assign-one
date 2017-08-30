@@ -3,13 +3,8 @@ import java.util.*;
 
 public class BstMultiset<T> extends Multiset<T>
 {
+	private Node mRoot;
 	
-	public static final int EMPTY_TREE = -1;
-
-    /** Root node of the tree. */
-	protected Node mRoot;
-
-
 	public BstMultiset() {
 		// Implement me!
 		mRoot = null;
@@ -17,44 +12,13 @@ public class BstMultiset<T> extends Multiset<T>
 
 	public void add(T item) {
 		// Implement me!
-		Node newNode = new Node(item);
-		
-		if(mRoot == null) {
-			mRoot = newNode;
-			return;
-		} 
-		
-		Node current = mRoot;
-		Node parent = null;
-		
-		while(true) {
-			
-			parent = current;
-			
-			
-			
-			if(((String) item).compareTo((String) current.getValue()) == 0) {
-				
-				current = current.mLeftChild;
-				
-				if(current==null){
-					parent.mLeftChild = newNode;
-					return;
-				}
-				
-			}
-		}
-			
 	} // end of add()
 
 
 	public int search(T item) {
 		// Implement me!
-		Node current = mRoot;
-		while(current!=null){
-	
-		}
-			// default return, please override when you implement this method
+
+		// default return, please override when you implement this method
 		return 0;
 	} // end of add()
 
@@ -72,60 +36,55 @@ public class BstMultiset<T> extends Multiset<T>
 	public void print(PrintStream out) {
 		// Implement me!
 	} // end of print()
-	
-	
-	
-	class Node
-	{
-		  	private T mItem;
-	        /** Reference to left child. */
-	        public Node mLeftChild;
-	        /** Reference to right child. */
-	        public Node mRightChild;
 
+	public class Node{
+		/* Stored item of node */
+		private T mItem;
+		/* Reference to left child sub-tree */
+		private Node mLeft;
+		/* Reference to right child sub-tree */
+		private Node mRight;
+		/* Count of duplicate items in node */
+		private int mCount;
+		
+		public Node(T item){
+			mItem = item;
+			mLeft = null;
+			mRight = null;
+			mCount = 1; 
+		}
 
-	        /**
-	         * Constructor.
-	         * @param <T>
-	         *
-	         * @param key Key to store in node.
-	         */
-	        public Node(T item) {
-	                mItem = item;
-	                mLeftChild = null;
-	                mRightChild = null;
-	        }
+		public Node getLeft() {
+			return mLeft;
+		}
 
+		public void setLeft(Node mLeft) {
+			this.mLeft = mLeft;
+		}
 
-	        /**
-	         *
-	         * @return Key stored in node.
-	         */
-	        public T getValue() {
-	            return mItem;
-	        } // end of getKey()
+		public Node getRight() {
+			return mRight;
+		}
 
+		public void setRight(Node mRight) {
+			this.mRight = mRight;
+		}
 
-	        /**
-	         *
-	         * @return Reference to left child of node.
-	         */
-	        public Node leftChild() {
-	            return mLeftChild;
-	        } // end of leftChild()
+		public T getItem() {
+			return mItem;
+		}
 
+		public int getCount() {
+			return mCount;
+		}
+		
+		public void increaseCount() {
+			mCount++;
+		}
 
-	        /**
-	         *
-	         * @return Reference to right child of node.
-	         */
-	        public Node rightChild() {
-	            return mRightChild;
-	        } // end of rightChild()
+		public void decreaseCount() {
+			mCount--;
+		}
 
-	} // end of class Node
-
-
+	}
 } // end of class BstMultiset
-
-
