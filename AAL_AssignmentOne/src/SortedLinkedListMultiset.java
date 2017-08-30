@@ -116,7 +116,13 @@ public class SortedLinkedListMultiset<T> extends Multiset<T> {
 	} // end of removeAll()
 
 	public void print(PrintStream out) {
-		// Implement me!
+		if (mHead != null) {
+			Node currNode = mHead;
+			while (currNode != null) {
+				out.println(currNode.getString() + printDelim + currNode.getCount());
+				currNode = currNode.getNext();
+			}
+		}
 	} // end of print()
 	
 	public Node getNode(T item) {
@@ -187,6 +193,10 @@ public class SortedLinkedListMultiset<T> extends Multiset<T> {
 		
 		public int getCount(){
 			return mCount;
+		}
+		
+		public String getString(){
+			return mItem.toString();
 		}
 
 	} // end of inner class Node
