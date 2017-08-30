@@ -113,6 +113,10 @@ public class SortedLinkedListMultiset<T> extends Multiset<T> {
 
 	public void removeAll(T item) {
 		// Implement me!
+		Node currNode = getNode(item);
+		if(currNode != null){
+			deleteNode(currNode);
+		}
 	} // end of removeAll()
 
 	public void print(PrintStream out) {
@@ -200,5 +204,32 @@ public class SortedLinkedListMultiset<T> extends Multiset<T> {
 		}
 
 	} // end of inner class Node
+	
+	protected void deleteNode(Node currNode) {
+		//If there is only one item left.
+		if(currNode.equals(mHead) && mHead.getNext() != null){
+			//If Current is at head and there are other nodes
+			mHead = mHead.getNext();
+			mLength--;
+			currNode = mHead;
+		}else if(currNode.equals(mHead) && mHead.getNext() == null){
+			//If Current is at head and there are no other nodes
+			mHead = null;
+			mLength--;
+		}else if(currNode.equals(mTail)){
+			//Current node is at tail
+			mTail = mTail.getPrev();
+			mTail.setNext(null);
+			mLength--;
+		}else if(currNode != null){
+			//Current node is not null and is in the middle
+			Node prvNode = currNode.getPrev();
+			Node nxtNode = currNode.getNext();
+			currNode.mPrev.setNext(nxtNode);
+			currNode.mNext.setPrev(prvNode);
+			currNode = nxtNode;
+			mLength--;
+		}
+	}
 
 } // end of class SortedLinkedListMultiset
