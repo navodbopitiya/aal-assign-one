@@ -30,10 +30,12 @@ public class BstMultiset<T> extends Multiset<T>
 		while(true) {
 			
 			parent = current;
-								
-			if(((String) item).compareTo((String)current.getValue()) > 0) {
+			
+			
+			
+			if(((String) item).compareTo((String) current.getValue()) == 0) {
 				
-				current = current.mRightChild;
+				current = current.mLeftChild;
 				
 				if(current==null){
 					parent.mLeftChild = newNode;
@@ -50,16 +52,10 @@ public class BstMultiset<T> extends Multiset<T>
 		// Implement me!
 		Node current = mRoot;
 		while(current!=null){
-			if(current.mItem==item){
-				// found the node
-			}else if(current.mItem>item){
-				current = current.mLeftChild;
-			}else{
-				current = current.mRightChild;
-			}
+	
 		}
-			
-		return 0; // return count
+			// default return, please override when you implement this method
+		return 0;
 	} // end of add()
 
 
